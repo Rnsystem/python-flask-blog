@@ -1,0 +1,846 @@
+@charset "euc-jp";
+
+#Community {
+  display: flex;
+  justify-content: space-around; /* 各li要素の間隔を均等に配置 */
+  align-items: center; /* 画像を上下中央揃え */
+  padding: 0;
+  list-style-type: none; /* リストのマーカーを非表示 */
+  margin: 0; /* 不要な余白を削除 */
+}
+
+#Community li {
+  flex: 1; /* 各li要素が均等に配置される */
+  text-align: center; /* 画像を中央揃え */
+}
+
+#Community img {
+  max-width: 100px; /* 画像のサイズを制限 */
+  height: auto;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body {
+  font: 14px/2 "Open sans",sans-serif;
+  letter-spacing: 0.05em;
+}
+article{
+  max-width:1100px;
+  margin:0% auto;
+  display: block;
+  padding: 70px 70px; /* 中央に揃える */
+}
+img{
+width:100%;
+}
+.btn {
+  display: inline-block;
+  padding: 13px 20px;
+  color: #444;
+  text-decoration: none;
+  position: relative;
+  background: transparent;
+  border: 1px solid #e1e1e1;
+  font: 12px/1.2 "Oswald", sans-serif;
+  letter-spacing: 0.4em;
+  text-align: center;
+  text-indent: 2px;
+  text-transform: uppercase;
+  transition: color 0.1s linear 0.05s;
+}
+.btn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #e1e1e1;
+  z-index: 1;
+  opacity: 0;
+  transition: height 0.2s ease, top 0.2s ease, opacity 0s linear 0.2s;
+}
+.btn::after {
+  transition: border 0.1s linear 0.05s;
+}
+.btn .btn-inner {
+  position: relative;
+  z-index: 2;
+}
+.btn:hover {
+  color: #373737;
+  transition: color 0.1s linear 0s;
+}
+.btn:hover::before {
+  top: 0;
+  height: 100%;
+  opacity: 1;
+  transition: height 0.2s ease, top 0.2s ease, opacity 0s linear 0s;
+}
+.btn:hover::after {
+  border-color: #373737;
+  transition: border 0.1s linear 0s;
+}
+
+.slideshow {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 3;
+}
+.slideshow .slideshow-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.slideshow .slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.slideshow .slide {
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.slideshow .slide.is-active {
+  display: block;
+}
+.slideshow .slide.is-loaded {
+  opacity: 1;
+}
+.slideshow .slide .caption {
+  padding: 80px 50px;
+  border-radius:30% 70% 35% 65% / 50% 50% 50% 50% ;
+  background:rgba(255,255,255,0.7);
+}
+.slideshow .slide .image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  z-index: 1;
+  background-size: cover;
+  image-rendering: optimizeQuality;
+}
+.slideshow .slide .image-container-top {
+  position: absolute;
+  top: 0;
+  left: 50%; /* 要素の中央に配置 */
+  transform: translateX(-50%); /* 要素の幅の半分だけ左にシフト */
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  z-index: 1;
+  background-size: cover;
+  image-rendering: optimizeQuality;
+  max-width: 1800px;/*追加*/
+  
+}
+.slideshow .slide .image-container::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background: rgba(0, 0, 0, 0.5);*/
+}
+.slideshow .slide .image {
+  width: 100%;
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.slideshow .slide-content {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slideshow {
+  top: 0;
+}
+.slide-content {
+  top: 30%;
+}
+
+.slideshow .slide-content-top {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slide-content-top {
+  top: 30%;
+}
+
+.slideshow .slide .title {
+  margin: 0 auto 15px;
+  max-width: 1000px;
+  font: 300 50px/1.2 "Oswald", sans-serif;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+.slideshow .slide .text {
+  margin: 0 auto;
+  max-width: 1000px;
+  font-size: 18px;
+  line-height: 1.4;
+  color:#444;
+  font-weight:bold;
+}
+.slideshow .slide .btn {
+  margin: 15px 0 0;
+  border-color: #666;
+}
+.slideshow .slide .btn::before {
+  background: #e5c45b;
+}
+.slideshow .pagination {
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  cursor: default;
+  z-index: 2;
+  text-align: center;
+}
+.slideshow .pagination .item {
+  display: inline-block;
+  padding: 15px 5px;
+  position: relative;
+  width: 46px;
+  height: 32px;
+  cursor: pointer;
+  text-indent: -999em;
+  z-index: 1;
+}
+.slideshow .pagination .item + .page {
+  margin-left: -2px;
+}
+.slideshow .pagination .item::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  width: 36px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.2s ease;
+}
+.slideshow .pagination .item::after {
+  width: 0;
+  background: #fff;
+  z-index: 2;
+  transition: width 0.2s ease;
+}
+.slideshow .pagination .item:hover::before, .slideshow .pagination .item.is-active::before {
+  background-color: #fff;
+}
+.slideshow .arrows .arrow {
+  margin: -33px 0 0;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  z-index: 3;
+}
+.slideshow .arrows .prev {
+  left: 30px;
+}
+.slideshow .arrows .prev:hover .svg {
+  left: -10px;
+}
+.slideshow .arrows .next {
+  right: 30px;
+}
+.slideshow .arrows .next:hover .svg {
+  left: 10px;
+}
+.slideshow .arrows .svg {
+  position: relative;
+  left: 0;
+  width: 14px;
+  height: 26px;
+  fill: #fff;
+  transition: left 0.2s ease;
+}
+.main-catch{
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  max-width:900px;
+  margin:0 auto;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  color:#fff;
+  font: 500 35px/1.8 "Oswald", sans-serif;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 60%);
+}
+.main-catch span{
+  font-weight:bold;
+}
+.js-animation-topMainCatchTxt{
+  opacity: 0;
+  visibility: hidden;
+  position:absolute;
+  top: 87.5%;
+  left: 50%;
+  max-width:900px;
+  margin:0 auto;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  /* color:#fff; */
+  font: 500 80px/1.8 "Oswald", sans-serif;
+  letter-spacing: 0.35em;
+  /* text-transform: uppercase; */
+  transform: translate(-50%, -50%) scale(1, 2); /* Y軸に1.5倍の拡大 */
+  transition: all 1s;
+  text-align: center;
+  /* グラデーションの設定 */
+  background: linear-gradient(to bottom, white 50%, #f5f5f4 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.js-animation-topMainCatchTxt.is-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.js-animation-topMainCatchTxt{
+  font-weight:bold;
+}
+h1, h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+}
+
+h1 {
+}
+
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight:400;
+  margin-top:2%;
+}
+.voice{
+    border: 1px solid #ccc;
+    padding: 5%;
+    margin: 5% auto;
+}
+.customer{
+    width:50px;
+    display:inline-block;
+    margin-right:10px;
+    margin-top:0%;
+    vertical-align:middle;
+}
+.customer img{
+    width:100%;
+}
+.voice_name{
+    display:inline-block;
+    vertical-align:middle;
+    margin-top:5%;
+}
+
+.comment{
+    background-image: linear-gradient(90deg, rgba(237, 119, 128, 0) 0%, rgba(237, 119, 128, 0) 50%, #fff 0%, #fff 100%), linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 97.5%, #646464 100%);
+    background-size: 8px 100%,100% 2em;
+    line-height: 2em;
+}
+
+.service_mark{
+    margin:2% 0;
+    padding:1%;;
+    border:1px solid #373737;
+    width:250px;
+    text-align:center;
+    display:block;
+}
+
+
+/*menu*/
+.menu{
+    height: 20px;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    z-index: 99999;
+}
+.menu__line{
+    background: #444;
+    display: block;
+    height: 2px;
+    position: absolute;
+    transition:transform .1s;
+    width: 100%;
+}
+.menu__line--center{
+    top: 9px;
+}
+.menu__line--bottom{
+    bottom: 0;
+}
+.menu__line--top.active{
+    top: 8px;
+    transform: rotate(45deg);
+}
+.menu__line--center.active{
+    transform:scaleX(0);
+}
+.menu__line--bottom.active{
+    bottom: 10px;
+    transform: rotate(135deg);
+}
+/*gnav*/
+.gnav{
+    background: rgba(214,214,214,0.9);
+    display: none;
+    height: 100%;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 99998;
+}
+.gnav__wrap{
+    align-items:center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+}
+.gnav__menu__item{
+    margin: 40px 0;
+}
+.gnav__menu__item a{
+    color: #fff;
+    font-size: 1.6em;
+    letter-spacing: 5;
+    line-height:1.8;
+    font-weight: bold;
+    padding: 40px;
+    text-decoration: none;
+    transition: .2s;
+}
+.gnav__menu__item a:hover{
+    color: #fcefa0;
+}
+header{
+  /*background:#fff;*/
+  width:100%;
+  height:60px;
+  z-index:99999;
+  position: fixed;
+  top:0;
+}
+header h1{
+  width:180px;
+  margin:10px;
+  padding:0;
+}
+header h1 img{
+  width:100%;
+}
+/*
+.masthead {
+  position: fixed;
+  top:0;
+  display: flex;
+  padding: 0px;
+  width: 100%;
+  
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}*/
+.scrolled {
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.wipein {
+  position: relative;
+  color: transparent;
+}
+.wipein:after {
+  display: block;
+  content: "";
+  height: 100%;
+  background: #000;
+  position: absolute;
+  top: 0;
+}
+.wipein.show {
+  animation: wipecolor 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86) both;
+}
+.wipein.show:after {
+  animation: wipebar 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86) both;
+}
+
+@keyframes wipebar {
+  0% {
+    left: 0;
+    right: 100%;
+  }
+  50% {
+    left: 0;
+    right: 0;
+  }
+  100% {
+    left: 100%;
+    right: 0;
+  }
+}
+@keyframes wipecolor {
+  0% {
+    color: transparent;
+  }
+  50% {
+    color: transparent;
+  }
+  51% {
+    color: #000;
+  }
+  100% {
+    color: #000;
+  }
+}
+
+.js-animation-mainContent {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(40px);
+  transition: all 1s;
+}
+.js-animation-mainContent.is-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0px);
+}
+.js-animation-subContent {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(40px);
+  transition: all 1s;
+}
+.js-animation-subContent.is-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0px);
+}
+
+.content01{
+  margin: 25px 0;
+  background: #fff;
+  border-bottom-left-radius: 1000px 200px;
+  border-bottom-right-radius: 1000px 200px;
+  height: auto;
+}
+
+.content02 {
+  margin: 25px 0;
+  background: #eee;
+  border-top-left-radius: 1000px 500px;
+  border-bottom-left-radius: 1000px 100px;
+  border-bottom-right-radius: 1000px 500px;
+  height: auto;
+  position: relative;
+  top: 0;
+}
+/*
+.content02::before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    bottom: 50%;
+    left: 0;
+    right: 0; 
+    background: #eee;
+    border-radius:30% 70% 35% 65% / 50% 50% 50% 50% ;
+    transform: skewY(-10deg);
+    z-index:-2;
+}*/
+.content03 {
+  margin: 25px 0;
+  background: #efefef;
+  border-top-left-radius: 1500px 300px;
+    border-top-right-radius: 1000px 1500px;
+    border-bottom-left-radius: 1500px 200px;
+    border-bottom-right-radius: 1000px 300px;
+  height: auto;
+  position: relative;
+  top: 0;
+}
+/*
+.content03::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0; 
+    background: #dedede;
+    transform: skewY(-10deg);
+    z-index:-2;
+}*/
+
+main .flexbox{
+  display:flex;
+  flex-wrap: wrap;
+}
+main .writer_flexbox{
+  display:flex;
+  flex-wrap: wrap;
+  min-height: 500px;
+  /*border: 4px solid #eee;*/ /* 線の太さと色を指定 */
+  /*border-radius: 20px;*/ /* 角の丸みを指定 */
+  padding: 0px; /* 内側の余白を指定（任意） */
+  background-color: rgba(255, 255, 255, 0.6); /* 白の半透明背景 */
+  border-top-left-radius: 1000px 2200px;
+  border-top-right-radius: 800px 2200px;
+  border-bottom-left-radius: 600px 400px;
+  border-bottom-right-radius: 1000px 1000px;
+  overflow: hidden; /* これにより、要素からはみ出た部分が非表示になります */
+}
+h2{
+  font-size:1.8em;
+  line-height:1.5;
+  margin:5% 0 10%;
+}
+h2 span{
+  font-size:0.5em;
+}
+.concept_wrap{
+  text-align:center;
+  margin:10% auto;
+}
+.concept_wrap h3{
+font-weight:bold;
+font-size:1.2em;
+margin:5% auto;
+}
+.concept_wrap img{
+max-width:120px;
+}
+.img_wrap{
+width:60%;
+margin:2%;
+}
+.txt_wrap{
+width:35%;
+}
+
+.main-writer-content-article{
+  max-width: 1100px;
+  min-height: 540px;
+  margin: 0% auto;
+  display: block;
+  padding-top: 40px;    /* 上の余白 */
+  padding-bottom: 70px; /* 下の余白 */
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.img_writer_wrap {
+  width:50%;
+  margin:auto;
+  text-align:center;
+}
+.img_writer {
+  border-radius: 10px; /* 画像を丸くする */
+  object-fit: cover; /* 画像の縦横比を保ちながら切り抜く */
+}
+.txt_writer_wrap {
+  text-align: center;
+  width: 35%;
+  margin: auto;
+  padding: 30px; /* 余白を増やして読みやすく */
+}
+
+
+.cat_wrap{
+  margin:2% auto 0;
+}
+.cat_wrap div{
+/* width: calc(100% / 6 - 5%); */
+/* height:70px; */
+width: 29%;
+height:20%;
+padding:2% 0;
+border:1px solid #eee;
+text-align:center;
+margin:0 2% 1%;
+font-size:0.8em;
+background:#fff;
+}
+.cat_wrap div:nth-child(1), .cat_wrap div:nth-child(6), .cat_wrap div:nth-child(11), .cat_wrap div:nth-child(16){
+border-radius:30% 70% 35% 65% / 50% 50% 50% 50% ;
+}
+.cat_wrap div:nth-child(2), .cat_wrap div:nth-child(7), .cat_wrap div:nth-child(12), .cat_wrap div:nth-child(17){
+border-radius:50% 30% 45% 35% / 50% 50% 50% 50% ;
+}
+.cat_wrap div:nth-child(3), .cat_wrap div:nth-child(8), .cat_wrap div:nth-child(13), .cat_wrap div:nth-child(18){
+border-radius:70% 40% 65% 35% / 50% 50% 50% 50% ;
+}
+.cat_wrap div:nth-child(4), .cat_wrap div:nth-child(9), .cat_wrap div:nth-child(14){
+border-radius:60% 50% 45% 55% / 50% 50% 50% 50% ;
+}
+.cat_wrap div:nth-child(5), .cat_wrap div:nth-child(10), .cat_wrap div:nth-child(15){
+border-radius:40% 55% 35% 65% / 50% 50% 50% 50% ;
+}
+.cat_wrap div img{
+width: 30px !important;
+}
+
+
+
+
+
+/*-----640px以下の表示の場合----*/
+@media screen and (max-width: 640px) {
+.main-catch {
+    width: 92%;
+    margin: 0 auto;
+    font: 500 18px/1.8 "Oswald", sans-serif;
+    letter-spacing: 0.2em;
+    text-align:center;
+}
+.js-animation-topMainCatchTxt {
+  top: 87.5%;
+  width: 92%;
+  margin: 0 auto;
+  font: 500 42px/1.8 "Oswald", sans-serif;
+  letter-spacing: 0.2em;
+  text-align:center;
+}
+.slideshow {
+  /* height: 70vh; */ /* 画面の高さ70%に表示 */
+  height: 100vh;  /* 画面の高さいっぱいに表示 */
+}
+.slideshow .slideshow-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.slideshow .slide .caption {
+    padding: 20px 20px;
+}
+.slideshow .slide .text {
+font-size:12px;
+}
+.slideshow .slide .btn{
+margin:5px auto;
+padding:5px;
+font-size:10px;
+}
+.slideshow .arrows .arrow {
+    top: 80%;
+}
+.slideshow .pagination .item {
+padding:5px;
+height:5px;
+}
+.slideshow .pagination{
+bottom:15px;
+}
+.img_wrap {
+  width: 100%;
+  margin: 5% auto;
+}
+.txt_wrap{
+  width:100%;
+}
+
+.writer_flexbox {
+  display: block; /* 横並びを解除して縦並びにする */
+  padding: 0; /* 外側の余白をリセット */
+}
+
+.img_writer_wrap {
+  width:70%;
+  margin: 0 auto; /* 中央揃え */
+  padding: 0 15px; /* 左右に少し余白を追加して、テキストとのバランスを取る */
+  box-sizing: border-box; /* パディングを含めて要素全体のサイズを調整 */
+}
+.img_writer {
+  width:70%;
+}
+.txt_writer_wrap {
+  width: 100%; /* テキストも全幅に広げる */
+  margin: 0 auto; /* 中央揃え */
+  padding: 0 15px; /* 左右に同じ余白を追加して、画像と揃える */
+  box-sizing: border-box; /* パディングを含めたサイズ調整 */
+}
+
+.txt_writer_wrap {
+  width:100%;
+  text-align:center;
+}
+
+.cat_wrap div {
+  width: calc(100% / 3 - 5%);
+  margin:0 2% 3%;
+}
+
+article{
+  /* width:92%; */
+  margin:0% auto;
+}
+
+
+
+}
+    
+    

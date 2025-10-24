@@ -1,0 +1,661 @@
+{% extends 'base.html' %}
+
+
+{% block header_script %}
+  <!-- 画像をバックグラウンドで先読み -->
+  {% for content in top_contents %}
+    {% if content.mainContentList is defined and content.mainContentList %}
+      <link rel="preload" href="{{ content.mainContentList[0].image_url }}" as="image">
+    {% endif %}
+  {% endfor %}
+{% endblock %}
+
+
+{% block menu %}
+  <!-- メニュー(アイコン)【開始】 -->
+  <a class="menu js-animation-mainContent">
+      <span class="menu__line menu__line--top"></span>
+      <span class="menu__line menu__line--center"></span>
+      <span class="menu__line menu__line--bottom"></span>
+  </a>
+  <!-- メニュー(アイコン)【終了】 -->
+  <!-- ガイドナビ 【開始】 -->
+  <nav class="gnav">
+      <div class="gnav__wrap">
+        <ul class="gnav__menu">
+          <li class="gnav__menu__item"><a href="/top">トップページ</a></li>
+          <li class="gnav__menu__item"><a href="/category">ブログ一覧</a></li>
+          <li class="gnav__menu__item"><a href="/company">活動概要</a></li>
+          <li class="gnav__menu__item"><a href="/privacy">プライバシーポリシー</a></li>
+          <li class="gnav__menu__item"><a href="/contact">お問い合せ</a></li>
+        </ul>
+      </div>
+  </nav>
+  <!-- ガイドナビ【終了】 -->
+  <!-- メニュー用　ガイドナビ用　javascript 【開始】 -->
+  <script type="text/javascript">
+  $('.menu').on('click',function(){
+      $('.menu__line').toggleClass('active');
+      $('.gnav').fadeToggle();
+  });
+  $('.gnav li').on('click',function(){
+      $('.menu__line').toggleClass('active');
+      $('.gnav').fadeToggle();
+  });
+  </script>
+  <!-- メニュー用　ガイドナビ用　javascript 【終了】 -->
+{% endblock %}
+
+
+{% block main %}
+  <main class="main-content js-animation-mainContent">
+    <!-- top section slideshow 開始 -->
+    <section class="slideshow">
+    <div class="slideshow-inner">    
+      <div class="slides">
+        <div class="slide is-active ">
+          <div class="slide-content-top">
+            <div class="caption">
+              <div class="text js-animation-subContent">
+                <p>システムを身近に。</p>
+              </div> 
+              <!-- <a href="" class="btn">
+                <span class="btn-inner">もっと見る</span>
+              </a> -->
+            </div>
+          </div>
+          <div class="image-container-top"> 
+            <img src="{{ url_for('static', filename='image/main_img01.jpg') }}" alt="トップ画像" class="image" />
+          </div>
+        </div>
+      </div>
+      <!-- <div class="pagination">
+        <div class="item is-active">
+          <span class="icon">１</span>
+        </div>
+      </div> -->
+      <!-- <div class="arrows">
+        <div class="arrow prev">
+          <span class="svg svg-arrow-left">
+            <svg version="1.1" id="svg4-Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px" viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve"> <path d="M13,26c-0.256,0-0.512-0.098-0.707-0.293l-12-12c-0.391-0.391-0.391-1.023,0-1.414l12-12c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L2.414,13l11.293,11.293c0.391,0.391,0.391,1.023,0,1.414C13.512,25.902,13.256,26,13,26z"/> </svg>
+            <span class="alt sr-only"></span>
+          </span>
+        </div>
+        <div class="arrow next">
+          <span class="svg svg-arrow-right">
+            <svg version="1.1" id="svg5-Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px" viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve"> <path d="M1,0c0.256,0,0.512,0.098,0.707,0.293l12,12c0.391,0.391,0.391,1.023,0,1.414l-12,12c-0.391,0.391-1.023,0.391-1.414,0s-0.391-1.023,0-1.414L11.586,13L0.293,1.707c-0.391-0.391-0.391-1.023,0-1.414C0.488,0.098,0.744,0,1,0z"/> </svg>
+            <span class="alt sr-only"></span>
+          </span>
+        </div>
+      </div> -->
+    </div> 
+    <div class="js-animation-topMainCatchTxt">RYOHMA</div>
+    </section>
+    <!-- top section slideshow 終了 -->
+    <!-- sub section 開始 -->
+    <section id="subContent01" class="element js-animation-mainContent ">
+      <article>
+        <div class="concept_wrap">
+          <h2><span>what's Rnsystem?</span><br>Rn sysmtemとは</h2>
+          <p> 
+            <strong>Rnシステム</strong>は、<br>
+            私自身と家族の成長や挑戦を整理し、<br> 
+            未来をつなぐポートフォリオです。<br> <br> 
+            これまでの経験を振り返りながら<br>
+            新しい知識を積み重ねる場であり、<br> 
+            同時に家族との日々や思い出を<br>
+            記録する大切な場所でもあります。<br><br> 
+            このドメインを取得したのは、<br>
+            知識や経験を体系的に残し、<br>
+            未来の自分や家族と共有できる<br> 
+            <strong>“自分だけのシステム”</strong>を<br>
+            持ちたいと考えたからです。<br> <br> 
+            ここに残す一つひとつの記録が、<br> 
+            家族のかけがえのない思い出へと<br>
+            つながっていくことを願っています。
+          </p>
+        </div>
+      </article>
+    </section>
+    <section id="subContent02" class="element js-animation-mainContent ">
+      <article>
+        <div class="concept_wrap">
+          <h2>Let's do it RN!<br>
+            <p><span>
+              <strong>「Rnシステム」</strong>は、<br> 
+              ネットスラングで使われる <br>
+              <em>"Right Now"</em> に由来しています。<br> <br>
+              「今を大切にし、すぐに動く」<br>
+              という思いを込め、<br> 
+              これまでの経験や学びを整理し、<br>
+              未来へつなげる場として立ち上げました。<br><br>
+              また、<strong>私と家族のイニシャル</strong>も込められており、<br>
+              家族の歩みを記録していく意味も持っています。<br><br>
+              一つひとつの記録が、学びや成長、<br> 
+              家族の思い出や未来へとつながっていく。<br><br>
+              それが<strong>Rnシステム</strong>の由来であり、<br>
+              この場に込めた想いです。
+            </span></p>
+          </h2>
+          <img src="{{ url_for('static', filename='image/Rbk.jpg') }}" alt="Rnsystemロゴ">
+        </div>
+      </article>
+    </section>
+    <section id="subContent03" class="element js-animation-mainContent content02">
+      <article>
+          <div class="flexbox">
+            <div class="img_wrap"><img src="{{ url_for('static', filename='image/portfolio1.png') }}" alt="ryohma"></div>
+            <div class="txt_wrap">
+              <h2><span>profile1</span><br>ryohma</h2>
+              <p>
+                こんにちは、Rnシステムを運営しているryohmaです。<br>
+                これまでPythonやFileMakerを使って、ECや業務の仕組みづくりに携わってきました。<br>
+                このブログは、自分の学びの記録であると同時に、家族との思い出も残していく大切な場所。<br>
+                日々の挑戦や気づきを少しずつ綴っていきます。
+              </p>
+            </div>
+          </div>
+          <div id="subContent03-itemCode" class="cat_wrap flexbox">
+            <div><a href="/blog/blg10001" target="_top">#自己紹介</a></div>
+            <div><a href="/category/portfolio" target="_top">#ポートフォリオ</a></div>
+            <div><a href="/blog/blg10003" target="_top">#趣味</a></div>
+          </div>
+      </article>
+    </section>
+    <!-- <section id="subContent04" class="element js-animation-mainContent content03">
+      <article>
+          <div class="flexbox">
+            <div class="img_wrap"><img src="{{ url_for('static', filename='image/portfolio2.png') }}" alt="natsumi"></div>
+            <div class="txt_wrap">
+              <h2><span>profile2</span><br>natsumi</h2>
+              <p>
+                こんにちは、natsumiです。<br>
+                普段はECのお仕事でSNS運用やメルマガ配信、カスタマー対応などをしていますが、<br>
+                ここでは、日々の出来事や家族との思い出を残していきたいと思っています。<br>
+                好きな食べ物はエビ、旅行は花より団子。<br>
+                おいしいものを食べながら、家族と笑って過ごす時間が一番の幸せです。
+              </p>
+            </div>
+          </div>
+          <div id="subContent03-itemCode" class="cat_wrap flexbox">
+            <div><a href="" target="_top">#ポートフォリオ</a></div>
+            <div><a href="" target="_top">#趣味</a></div>
+          </div>
+      </article>
+    </section> -->
+    <!-- <section id="subContent05" class="element js-animation-mainContent content02">
+      <article>
+          <div class="flexbox">
+            <div class="txt_wrap">
+              <h2><span>Mission３</span><br>"未来"と寄り添う。</h2>
+              <p>
+                "未来"と寄り添う情報を発信。<br>
+                私たちは、次世代を見据えた革新的な技術をお届けします。
+                未来の課題を解決するためのイノベーションをリードします。<br>
+                進化する社会に対応し、新たな価値を創造し続けることで、持続可能な未来を切り開きます。
+              </p>
+            </div>
+            <div class="img_wrap"><img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="未来に寄り添う情報発信"></div>
+          </div>
+      </article>
+    </section> -->
+    <!-- sub section 終了 -->
+    
+    <section id="subContent05" class="element js-animation-mainContent content03">
+      <div class="swiper-slider-content-article">
+        <div class="swiper-slider-container">
+          <div class="swiper swiper-slider">
+            <div class="swiper-slider-content-title"><h2>コンテンツ<br><span>contents</span></h2></div>
+              <div class="swiper-wrapper">
+                  <!-- 各スライド -->
+                  {% for i in range(3) %}
+                  {# reverseをつけることで逆順（投稿最新順） #}
+                  {% for content in top_contents | reverse %}
+                    <div class="swiper-slide swiper-slider-slide">
+                      <a href="/blog/{{ content.code }}" target="_blank">
+                        {% if content.mainContentList is defined and content.mainContentList %}
+                        <img 
+                        src="{{ content.mainContentList[0].image_url }}" 
+                        alt="{{ content.mainContentList[0].image_alt }}" 
+                        class="swiper-slider-center-image"
+                        data-src="{{ content.mainContentList[0].image_url }}"
+                        data-srcset="{{ content.mainContentList[0].image_url }} 1x, {{ content.mainContentList[0].image_url | replace('.jpg', '-2x.jpg') }} 2x" 
+                        >
+                        {% endif %}
+                      </a>
+                        <div class="swiper-slider-content">
+                          <div class="swiper-slider-content-frame">
+                            <div class="swiper-slider-date">{{ content.date }}</div>
+                            <div class="swiper-slider-title">{{ content.title }}</div>
+                            <div class="swiper-slider-description">{{ content.catchcopy }}</div>
+                            <div class="swiper-slider-tags">
+                              {% for categoryContent in content.categoryContentList %}
+                                <a href="/category/{{ categoryContent.code }}" target="_blank">
+                                  <span>#{{ categoryContent.name }}</span>
+                                </a>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  {% endfor %}
+                  {% endfor %}
+              </div>
+              <!-- ナビゲーションボタン -->
+              <div class="swiper-button-prev swiper-slider-prev"></div>
+              <div class="swiper-button-next swiper-slider-next"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section id="subContent06" class="element js-animation-mainContent content02">
+      <div class="swiper-slider-content-article">
+        <div class="swiper-slider-container">
+          <div class="swiper swiper-slider">
+            <div class="swiper-slider-content-title"><h2>ショップ<br><span>online shop</span></h2></div>
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/4361222_s.jpg') }}" alt="画像1" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.01</div>
+                        <div class="swiper-slider-title">美しい風景</div>
+                        <div class="swiper-slider-description">自然に囲まれた絶景スポットで、リラックスできる場所です。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#自然</span>
+                          <span>#旅行</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/24297057_s.jpg') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/4361222_s.jpg') }}" alt="画像1" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.01</div>
+                        <div class="swiper-slider-title">美しい風景</div>
+                        <div class="swiper-slider-description">自然に囲まれた絶景スポットで、リラックスできる場所です。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#自然</span>
+                          <span>#旅行</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/24297057_s.jpg') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/4361222_s.jpg') }}" alt="画像1" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.01</div>
+                        <div class="swiper-slider-title">美しい風景</div>
+                        <div class="swiper-slider-description">自然に囲まれた絶景スポットで、リラックスできる場所です。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#自然</span>
+                          <span>#旅行</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/24297057_s.jpg') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="swiper-slide swiper-slider-slide">
+                  <img src="{{ url_for('static', filename='image/4361222_s.jpg') }}" alt="画像1" class="swiper-slider-center-image">
+                  <div class="swiper-slider-content">
+                    <div class="swiper-slider-content-frame">
+                      <div class="swiper-slider-date">2024.06.01</div>
+                      <div class="swiper-slider-title">美しい風景</div>
+                      <div class="swiper-slider-description">自然に囲まれた絶景スポットで、リラックスできる場所です。</div>
+                      <div class="swiper-slider-tags">
+                        <span>#自然</span>
+                        <span>#旅行</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide swiper-slider-slide">
+                  <img src="{{ url_for('static', filename='image/24297057_s.jpg') }}" alt="画像2" class="swiper-slider-center-image">
+                  <div class="swiper-slider-content">
+                    <div class="swiper-slider-content-frame">
+                      <div class="swiper-slider-date">2024.06.02</div>
+                      <div class="swiper-slider-title">モダンデザイン</div>
+                      <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                      <div class="swiper-slider-tags">
+                        <span>#ミニマル</span>
+                        <span>#アート</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide swiper-slider-slide">
+                  <img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="画像2" class="swiper-slider-center-image">
+                  <div class="swiper-slider-content">
+                    <div class="swiper-slider-content-frame">
+                      <div class="swiper-slider-date">2024.06.02</div>
+                      <div class="swiper-slider-title">モダンデザイン</div>
+                      <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                      <div class="swiper-slider-tags">
+                        <span>#ミニマル</span>
+                        <span>#アート</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button-prev swiper-slider-prev"></div>
+              <div class="swiper-button-next swiper-slider-next"></div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- <section id="subContent06" class="element js-animation-mainContent content03">
+      <div class="swiper-slider-content-article">
+        <div class="swiper-slider-container">
+          <div class="swiper swiper-slider">
+            <div class="swiper-slider-content-title"><h2>ブログ<br><span>new arrival</span></h2></div>
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/4361222_s.jpg') }}" alt="画像1" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.01</div>
+                        <div class="swiper-slider-title">美しい風景</div>
+                        <div class="swiper-slider-description">自然に囲まれた絶景スポットで、リラックスできる場所です。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#自然</span>
+                          <span>#旅行</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/24297057_s.jpg') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/4361222_s.jpg') }}" alt="画像1" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.01</div>
+                        <div class="swiper-slider-title">美しい風景</div>
+                        <div class="swiper-slider-description">自然に囲まれた絶景スポットで、リラックスできる場所です。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#自然</span>
+                          <span>#旅行</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/24297057_s.jpg') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/4361222_s.jpg') }}" alt="画像1" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.01</div>
+                        <div class="swiper-slider-title">美しい風景</div>
+                        <div class="swiper-slider-description">自然に囲まれた絶景スポットで、リラックスできる場所です。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#自然</span>
+                          <span>#旅行</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/24297057_s.jpg') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide swiper-slider-slide">
+                    <img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="画像2" class="swiper-slider-center-image">
+                    <div class="swiper-slider-content">
+                      <div class="swiper-slider-content-frame">
+                        <div class="swiper-slider-date">2024.06.02</div>
+                        <div class="swiper-slider-title">モダンデザイン</div>
+                        <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                        <div class="swiper-slider-tags">
+                          <span>#ミニマル</span>
+                          <span>#アート</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="swiper-slide swiper-slider-slide">
+                  <img src="{{ url_for('static', filename='image/4361222_s.jpg') }}" alt="画像1" class="swiper-slider-center-image">
+                  <div class="swiper-slider-content">
+                    <div class="swiper-slider-content-frame">
+                      <div class="swiper-slider-date">2024.06.01</div>
+                      <div class="swiper-slider-title">美しい風景</div>
+                      <div class="swiper-slider-description">自然に囲まれた絶景スポットで、リラックスできる場所です。</div>
+                      <div class="swiper-slider-tags">
+                        <span>#自然</span>
+                        <span>#旅行</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide swiper-slider-slide">
+                  <img src="{{ url_for('static', filename='image/24297057_s.jpg') }}" alt="画像2" class="swiper-slider-center-image">
+                  <div class="swiper-slider-content">
+                    <div class="swiper-slider-content-frame">
+                      <div class="swiper-slider-date">2024.06.02</div>
+                      <div class="swiper-slider-title">モダンデザイン</div>
+                      <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                      <div class="swiper-slider-tags">
+                        <span>#ミニマル</span>
+                        <span>#アート</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide swiper-slider-slide">
+                  <img src="{{ url_for('static', filename='image/IMG_8545.JPG') }}" alt="画像2" class="swiper-slider-center-image">
+                  <div class="swiper-slider-content">
+                    <div class="swiper-slider-content-frame">
+                      <div class="swiper-slider-date">2024.06.02</div>
+                      <div class="swiper-slider-title">モダンデザイン</div>
+                      <div class="swiper-slider-description">洗練されたインテリアが特徴のモダンなデザイン空間。</div>
+                      <div class="swiper-slider-tags">
+                        <span>#ミニマル</span>
+                        <span>#アート</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button-prev swiper-slider-prev"></div>
+              <div class="swiper-button-next swiper-slider-next"></div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- <section id="main-writer-contents" class="element js-animation-mainContent content02">
+      <div class="main-writer-content-article">
+        <div class="concept_wrap">
+          <h2>PROFILE<br><span>main writer</span></h2>
+        </div>
+        <div class="writer_flexbox">
+          <div class="txt_writer_wrap">
+            <h2>上砂 龍馬<span><br>Uwasa Ryhoma</span></h2>
+            <p>
+              EC業界システムエンジニア。<br>
+              アパレルECを9年経験後、<br>
+              現在は木の玩具、家具ECへ。<br>
+              世界販売に向けて挑戦中。<br>
+              感じたことをつぶやきます。<br>
+              趣味は、珈琲、キャンプ。
+            </p>
+          </div>
+          <div class="img_writer_wrap">
+            <img class="img_writer" src="{{ url_for('static', filename='image/portfolio.png') }}" alt="上砂 龍馬">
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- main writer 終了 -->
+  </main>
+  <!-- main 終了 -->
+{% endblock %}
+
+
+
+
+
+
+
+{% block community %}
+  <section id="foot" class="js-animation-mainContent">
+    <article class="gray">
+      <h2>PORTFOLIO</h2>
+      <ul id="Community" class="flexbox">
+        <li><a href="https://github.com/Rnsystem" target="_top"><img src="{{ url_for('static', filename='image/github-mark_gray.png') }}" alt="github"></a></li>
+        <li><a href="https://www.instagram.com/r.uwasa1130/" target="_top"><img src="{{ url_for('static', filename='image/instagram-mark_gray.png') }}" alt="github"></a></li>
+        <li><a href="https://coconala.com/users/1172887" target="_top"><img src="{{ url_for('static', filename='image/coconala-mark_gray.png') }}" alt="github"></a></li>
+      </ul>
+    </article>
+  </section>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <!-- Stripe.jsを読み込む -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h2>Checkout</h2>
+    <button id="checkout-button">Checkout</button>
+    <script type="text/javascript">
+        // 公開用のStripeキーを設定（Flaskのバックエンドから取得）
+        var stripe = Stripe('pk_test_Nej5kGA1pDwAOEofRWwU8A1P');
+        var checkoutButton = document.getElementById('checkout-button');
+        checkoutButton.addEventListener('click', function () {
+            fetch('/payment/create-checkout-session', {
+                method: 'POST',
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (sessionId) {
+                return stripe.redirectToCheckout({ sessionId: sessionId.id });
+            })
+            .then(function (result) {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

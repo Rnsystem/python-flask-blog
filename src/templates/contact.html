@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block header_script %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block main %}
+
+
+<div ><a href="JavaScript:window.history.back()" class="btn_contact_header">戻る</a></div>
+ <!-- 問い合わせフォーム -->
+<form name="contact" method="post" action="{{ url_for('handle_contact') }}">
+  <input type="hidden" name="contact" value="">
+  <input type="hidden" name="admin_id" value="relaxfurn">
+  <input type="hidden" name="return_path" value="">
+  <input type="hidden" name="brandcode" value="">
+  <input type="hidden" name="contact_post_token" value="a35aba5d6bbc2d93388522b663fd1758f2aa118f">
+  <input type="hidden" name="is_smartphone" value="N">
+  
+  <div class="wrap" id="contact">
+    <section class="main">
+      <div class="section">
+        <div class="header">
+          <h1 class="pageTitle">お問い合わせ</h1>
+        </div>
+        <p>以下のフォームの項目を入力し、「この内容で問い合わせる」ボタンをクリックしてください。</p>
+        
+        <table class="formTable">
+          <tr>
+            <th>お名前<span class="required">必須</span></th>
+            <td>
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                  {% if category == 'name_error' %}
+                    <p id="name_error" class="errorMesseage">{{ message }}</p>
+                  {% endif %}
+                {% endfor %}
+              {% endwith %}
+              <input type="text" name="name" maxlength="20" size="25" value="{{ request.form.name }}">
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス<span class="required">必須</span></th>
+            <td>
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                  {% if category == 'email_error' %}
+                    <p id="email_error" class="errorMesseage">{{ message }}</p>
+                  {% endif %}
+                {% endfor %}
+              {% endwith %}
+              <input type="text" name="email" maxlength="50" size="50" value="{{ request.form.email }}">
+            </td>
+          </tr>
+          <tr>
+            <th>お問い合わせ内容<span class="required">必須</span></th>
+            <td>
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                  {% if category == 'content_error' %}
+                    <p id="content_error" class="errorMesseage">{{ message }}</p>
+                  {% endif %}
+                {% endfor %}
+              {% endwith %}
+              <textarea wrap="off" rows="15" cols="60" maxlength="2000" name="content">{{ request.form.content }}</textarea>
+              <span class="notes">※全角2000文字まで</span>
+            </td>
+          </tr>
+        </table>
+
+        <div class="policyWrap">
+          <h2 class="policyTitle">個人情報保護ポリシー</h2>
+          <div class="privacyPolicyWrap">
+            <iframe src="/privacy_iframe" class="privacyPolicy"></iframe>
+          </div>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+              {% if category == 'agree_error' %}
+                <p id="agree_error" class="errorMesseage">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+          {% endwith %}
+          <div class="agreeBox">
+            <input type="checkbox" name="agree" id="agree" class="agreeCheck">
+            <label for="agree">個人情報保護ポリシーに同意する</label>
+          </div>
+        </div>
+        <!-- フラッシュメッセージを取得 -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+          {% if messages %}
+            {% set category, message = messages[0] %}
+            {% if category == 'success' %}
+              <div class="btnWrap">
+                <div class="flash-messages_success">
+                <p>{{ message }}</p>
+                </div>
+              </div>
+              <div class="btnWrap">
+                <a href="/top" target="_top" class="btn_contact">トップページへ戻る</a>
+              </div>
+            {% else %}
+              <div class="btnWrap">
+                <button type="submit" class="btn_contact" onclick="handleSubmit(event)">入力内容を確認の上、もう一度送信してください</button>
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="btnWrap">
+              <button type="submit" class="btn_contact" onclick="handleSubmit(event)">この内容で問い合わせる</button>
+            </div>
+          {% endif %}
+        {% endwith %}  
+        <!-- reCAPTCHAのスクリプトは body 終了直前に配置 -->
+        <script src="https://www.google.com/recaptcha/api.js?render=6LcXis4qAAAAAO7UGWC0nSDgTkHfOnemkq1lpKAO"></script>
+        <script>
+          function handleSubmit(event) {
+            event.preventDefault(); // フォームのデフォルトの送信を防ぐ
+
+            grecaptcha.ready(function() {
+              grecaptcha.execute('6LcXis4qAAAAAO7UGWC0nSDgTkHfOnemkq1lpKAO', {action: 'submit'}).then(function(token) {
+                // トークンをフォームに追加
+                var form = document.contact; // フォームの名前が 'contact' である場合
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'g-recaptcha-response';
+                input.value = token;
+                form.appendChild(input);
+                
+                // フォームを送信
+                form.submit();
+              });
+            });
+          }
+        </script>
+      </div>
+    </section>
+  </div>
+</form>
+{% endblock %}

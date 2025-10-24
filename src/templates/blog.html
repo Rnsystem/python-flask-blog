@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+
+
+{% block header_script %}
+{% if blog.sale_flag == 1 %}<script src="https://js.stripe.com/v3/"></script>{% endif %}
+{% endblock %}
+
+{% block menu %}
+  <!-- メニュー(アイコン)【開始】 -->
+  <a class="menu">
+      <span class="menu__line menu__line--top"></span>
+      <span class="menu__line menu__line--center"></span>
+      <span class="menu__line menu__line--bottom"></span>
+  </a>
+  <!-- メニュー(アイコン)【終了】 -->
+  <!-- ガイドナビ 【開始】 -->
+  <nav class="gnav">
+      <div class="gnav__wrap">
+        <ul class="gnav__menu">
+          {% for content in blog.mainContentList %}
+            {% if 'code' in content %}
+              <li class="gnav__menu__item"><a href="#{{ content.code }}">{{ content.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+  </nav>
+  <!-- ガイドナビ【終了】 -->
+  <!-- メニュー用　ガイドナビ用　javascript 【開始】 -->
+  <script type="text/javascript">
+  $('.menu').on('click',function(){
+      $('.menu__line').toggleClass('active');
+      $('.gnav').fadeToggle();
+  });
+  $('.gnav li').on('click',function(){
+      $('.menu__line').toggleClass('active');
+      $('.gnav').fadeToggle();
+  });
+  </script>
+  <!-- メニュー用　ガイドナビ用　javascript 【終了】 -->
+{% endblock %}
+
+
+{% block main %}
+  <!-- main 開始 -->
+  <main class="main-content">
+    <!-- mainContentList 開始 -->
+    <section class="slideshow">
+      <div class="slideshow-inner">    
+      <div class="main-catch">
+        {{ blog.title }}
+      </div>
+        <div class="slides">
+          {% for content in blog.mainContentList %}
+            {% if loop.index == 1 %}<div class="slide is-active ">{% else %}<div class="slide">{% endif %}
+              <div class="slide-content">
+                <div class="caption">
+                  <div class="text">
+                    <p>{{ content.title }}</p>
+                  </div> 
+                  <a href="#{{ content.code }}" class="btn">
+                    <span class="btn-inner">もっと見る</span>
+                  </a>
+                </div>
+              </div>
+              <div class="image-container"> 
+                <img src="{{ content.image_url }}" alt="{{ content.image_alt }}" class="image" />
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="pagination">
+          {% for content in blog.mainContentList %}
+            {% if loop.index == 1 %}<div class="item is-active">{% else %}<div class="item">{% endif %}
+              <span class="icon">"{{ loop.index }}</span>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="arrows">
+          <div class="arrow prev">
+            <span class="svg svg-arrow-left">
+              <svg version="1.1" id="svg4-Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px" viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve"> <path d="M13,26c-0.256,0-0.512-0.098-0.707-0.293l-12-12c-0.391-0.391-0.391-1.023,0-1.414l12-12c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L2.414,13l11.293,11.293c0.391,0.391,0.391,1.023,0,1.414C13.512,25.902,13.256,26,13,26z"/> </svg>
+              <span class="alt sr-only"></span>
+            </span>
+          </div>
+          <div class="arrow next">
+            <span class="svg svg-arrow-right">
+              <svg version="1.1" id="svg5-Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px" viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve"> <path d="M1,0c0.256,0,0.512,0.098,0.707,0.293l12,12c0.391,0.391,0.391,1.023,0,1.414l-12,12c-0.391,0.391-1.023,0.391-1.414,0s-0.391-1.023,0-1.414L11.586,13L0.293,1.707c-0.391-0.391-0.391-1.023,0-1.414C0.488,0.098,0.744,0,1,0z"/> </svg>
+              <span class="alt sr-only"></span>
+            </span>
+          </div>
+        </div>
+      </div> 
+      </section>
+      <!-- mainContentList 終了 -->
+    <!-- subContentList 開始 -->
+    {% for content in blog.subContentList %}
+      <section {% if 'code' in content %}id="{{ content.code }}"{% endif %} class="element js-animation-mainContent {% if 'class' in content %}{{ content.class }}{% endif %}">
+        <article>
+            {% if loop.index is even %}
+              {% if content.type == 1 %} <!-- 画像のみ（中央揃え）-->
+                <div class="concept_wrap">
+                  <h2>{{ content.title }}{% if 'subtitle' in content %}<br><span>{{ content.subtitle }}</span>{% endif %}</h2>
+                  <img src="{{ content.image_url }}" alt="{{ content.image_alt }}">
+                </div>
+              {% elif content.type == 2 %} <!-- 画像と文章 -->
+                <div class="flexbox">
+                  <div class="txt_wrap">
+                    <h2>{{ content.title }}{% if 'subtitle' in content %}<br><span>{{ content.subtitle }}</span>{% endif %}</h2>
+                    {% if 'catchcopy' in content %}
+                      <p>{{ content.catchcopy | safe }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="img_wrap"><img src="{{ content.image_url }}" alt="{{ content.image_alt }}"></div>
+                </div>
+              {% elif content.type == 3 %} <!-- ソースコード -->
+                <div class="code-container">
+                  <div class="hide-text"><pre id="{{ content.code_copy }}" class="prettyprint linenums">{{ content.code_source }}</pre></div>
+                  <div class="file-name">{{ content.code_filename }}</div>
+                  <button onclick="copyToClipboard('{{ content.code_copy }}')">copy</button>
+                  <button class="readmore"><span class="open">続きを読む</span><span class="close">閉じる</span></button>
+                </div>
+              {% elif content.type == 4 %} <!-- 文章のみ（中央揃え） -->
+                <div class="concept_wrap">
+                  <h2>{{ content.title }}{% if 'subtitle' in content %}<br><span>{{ content.subtitle }}</span>{% endif %}</h2>
+                  {% if 'catchcopy' in content %}
+                    <p>{{ content.catchcopy | safe }}</p>
+                  {% endif %}
+                </div>
+              {% elif content.type == 5 %} <!-- 文章 左揃え -->
+                <div class="flexbox">
+                  <div class="txt_wrap">
+                    <h2>{{ content.title }}{% if 'subtitle' in content %}<br><span>{{ content.subtitle }}</span>{% endif %}</h2>
+                    {% if 'catchcopy' in content %}
+                      <p>{{ content.catchcopy | safe }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="img_wrap"></div>
+                </div>
+              {% elif content.type == 6 %} <!-- 画像 左揃え -->
+                <div class="flexbox">
+                  <div class="img_wrap"><img src="{{ content.image_url }}" alt="{{ content.image_alt }}"></div>
+                  <div class="txt_wrap"></div>
+                </div>
+              {% elif content.type == 7 %} <!-- カスタム -->
+                <div>
+                  {{ content.code_source | safe }}
+                </div>
+              {% endif %}
+            {% else %}
+              {% if content.type == 1 %} <!-- 画像のみ（中央揃え）-->
+                <div class="concept_wrap">
+                  <h2>{{ content.title }}{% if 'subtitle' in content %}<br><span>{{ content.subtitle }}</span>{% endif %}</h2>
+                  <img src="{{ content.image_url }}" alt="{{ content.image_alt }}">
+                </div>
+              {% elif content.type == 2 %} <!-- 画像と文章 -->
+                <div class="flexbox">
+                  <div class="img_wrap"><img src="{{ content.image_url }}" alt="{{ content.image_alt }}"></div>
+                  <div class="txt_wrap">
+                    <h2>{{ content.title }}{% if 'subtitle' in content %}<br><span>{{ content.subtitle }}</span>{% endif %}</h2>
+                    {% if 'catchcopy' in content %}
+                      <p>{{ content.catchcopy | safe }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% elif content.type == 3 %} <!-- ソースコード -->
+                <div class="code-container">
+                  <div class="hide-text"><pre id="{{ content.code_copy }}" class="prettyprint linenums">{{ content.code_source }}</pre></div>
+                  <div class="file-name">{{ content.code_filename }}</div>
+                  <button onclick="copyToClipboard('{{ content.code_copy }}')">copy</button>
+                  <button class="readmore"><span class="open">続きを読む</span><span class="close">閉じる</span></button>
+                </div>
+              {% elif content.type == 4 %} <!-- 文字のみ（中央揃え） -->
+                <div class="concept_wrap">
+                  <h2>{{ content.title }}{% if 'subtitle' in content %}<br><span>{{ content.subtitle }}</span>{% endif %}</h2>
+                  {% if 'catchcopy' in content %}
+                    <p>{{ content.catchcopy | safe }}</p>
+                  {% endif %}
+                </div>
+              {% elif content.type == 5 %} <!-- 文章 右揃え -->
+                <div class="flexbox">
+                  <div class="img_wrap"></div>
+                  <div class="txt_wrap">
+                    <h2>{{ content.title }}{% if 'subtitle' in content %}<br><span>{{ content.subtitle }}</span>{% endif %}</h2>
+                    {% if 'catchcopy' in content %}
+                      <p>{{ content.catchcopy | safe }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% elif content.type == 6 %} <!-- 画像 右揃え -->
+                <div class="flexbox">
+                  <div class="txt_wrap"></div>
+                  <div class="img_wrap"><img src="{{ content.image_url }}" alt="{{ content.image_alt }}"></div>
+                </div>
+              {% elif content.type == 7 %} <!-- カスタム -->
+              <!-- HTMLやCSSをそのまま描画 -->
+              <div>
+                {{ content.code_source | safe }}
+              </div>
+              {% endif %}
+            {% endif %}
+          {% if 'itemFlag' in content %}
+            {% if content.itemFlag %}
+              <div {% if 'itemCode' in content %}id="{{ content.itemCode }}"{% endif %} class="cat_wrap flexbox">
+                {% if 'itemList' in content %}
+                  {% for item in content.itemList %}
+                    <div><a href="{{ item.url }}" target="_top"><img src="{{ item.image_url }}" alt="{{ item.image_alt }}"><p>{{ item.name }}</p></a></div>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endif %}
+        </article>
+      </section>
+    {% endfor %}
+    <!-- subContentList 終了 -->
+    <!-- writerContentList 開始 -->
+    {% if 'writerContentList' in blog %}
+      {% for content in blog.writerContentList %}
+        <section {% if 'code' in content %}id="{{ content.code }}"{% endif %} class="element js-animation-mainContent {% if 'class' in content %}{{ content.class }}{% endif %}">
+          <article>
+            <div class="concept_wrap">
+              <h2>writer<br>{% if blog.writerContentList|length > 1 %}<span>{% if loop.index == 1 %}main writer{% else %}sub writer{% endif %}</span>{% endif %}</h2>
+            </div>
+            <div class="writer_flexbox">
+              <div class="img_writer_wrap">
+                <h2>{% if 'nickname_en' in content %}<span>{{ content.nickname_en }}<br></span>{% endif %}{{ content.nickname }}</h2>
+                <img class="img_writer" src="{{ content.image_url }}" alt="{{ content.image_alt }}">
+              </div>
+              <div class="txt_writer_wrap">
+                <p>{{ content.profile | safe }}</p>
+              </div>
+            </div>
+          </article>
+        </section>
+      {% endfor %}
+    {% endif %}
+    <!-- writerContentList 終了 -->
+    <!-- categoryContentList 開始 -->
+    {% if 'categoryContentList' in blog %}
+      <section class="element js-animation-mainContent">
+        <article>
+          <div class="concept_wrap">
+            <h2>category<br><span>subcategory</span></h2>
+          </div>
+          <div class="cat_wrap flexbox">
+            {% for content in blog.categoryContentList %}
+              <!-- <div><a href="{{ content.url }}" target="_top"><img src="{{ content.image_url }}" alt="{{ content.image_alt }}"><p>{{ content.name }}</p></a></div> -->
+               <div><a href="/category/{{ content.code }}" target="_top"><p>{{ content.name }}</p></a></div>
+            {% endfor %}
+          </div>
+        </article>
+      </section>
+    {% endif %}
+    <!-- categoryContentList 終了 -->
+    <!-- <div class="concept_wrap"></div> -->
+  </main>
+  <!-- main 終了 -->
+{% endblock %}
+
+{% block community %}
+{% endblock %}
+
+{% block sale %}
+{% if blog.sale_flag == 1 %}
+<div class="pagetop_center">
+  {{ "{:,}".format(blog.stripeContentList.unit_amount | int) }}円（税込）
+  <select id="quantity">
+    {% for i in range((blog.sale_quantity_max | int) - (blog.sale_quantity_min | int) + 1) %}
+    <option value="{{ i + (blog.sale_quantity_min | int) }}" {% if i == 0 %}selected{% endif %}>{{ i + (blog.sale_quantity_min | int) }}個</option>
+    {% endfor %}
+  </select>
+  <button id="checkout-button" stripe-price-id="price_1Q0DESEHZERasF7Qor20nvUJ">購入する</button>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block footer_script %}
+{% if blog.sale_flag == 1 %}<script src="{{ url_for('static', filename='js/stripe.js') }}"></script><!-- stripe用 【用途】stripe -->{% endif %}
+{% endblock %}

@@ -1,0 +1,133 @@
+.code-container {
+  position: relative;
+  /* margin: 20px 40px;*/ /* 上下　左右 */
+  background-color: #fff;
+  border: none; /* 枠線を非表示 */ /* border: 1px solid #e0e0e0; */
+  border-radius: 8px;
+  overflow: hidden;
+}
+.code-container .file-name {
+  font: 20px/1.2 "Oswald", sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #eee;
+  color: #333;
+  padding: 5px 10px;
+  border-bottom-right-radius: 8px;
+  font-weight: bold;
+}
+.code-container button {
+  font: 20px/1.2 "Oswald", sans-serif;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #eee;
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  border-bottom-left-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.code-container button:hover {
+  background-color: #e0e0e0;
+}
+.code-container pre.prettyprint {
+  border: none; /* 枠線を非表示 */
+  border-radius: 8px;
+  margin: 50px 0 0 0; /* 上 右 下 左 */
+  padding: 20px 40px 40px 40px; /* 上 右 下 左 */
+  background-color: #eee; /* コード表示の背景色を濃いグレーに */
+  color: #333; /* コード文字の色を明るい灰色に */
+  overflow: auto;
+  font: 14px/1.2 "Oswald", sans-serif;
+  line-height: 2.2;
+  white-space: pre-wrap; /* 改行を保持 */
+}
+.code-container pre.prettyprint ol.linenums > li {
+  position: relative;
+}
+.code-container pre.prettyprint ol.linenums > li::after {
+  content: "";
+  position: absolute;
+  /* position: sticky; */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  border-bottom: 2px dashed #ccc; /* 点線の色 */
+}
+/* 奇数行 */
+/* .code-container pre.prettyprint ol.linenums > li:nth-child(odd) {
+  background-color: #e0e0e0; 
+  color: #333; 
+  padding: 0 0 0 10;
+} */
+/* 偶数行 */
+/* .code-container pre.prettyprint ol.linenums > li:nth-child(even) {
+  background-color: #eee; 
+  color: #333;
+  padding: 0 0 0 10;
+} */
+.code-container ol.linenums {
+  margin: 0 0 0 15px; /* 上 右 下 左 */
+}
+.code-container li.L0, .code-container li.L1, .code-container li.L2, 
+.code-container li.L3, .code-container li.L4, .code-container li.L5, 
+.code-container li.L6, .code-container li.L7, .code-container li.L8, 
+.code-container li.L9 {
+  list-style-type: decimal;
+}
+
+/* ---------------------------------------------------------------------------------------------
+【アコーディオン】続きを読む
+--------------------------------------------------------------------------------------------- */
+.code-container .hide-text {
+  display: block;
+  max-height: 150px; /* 初期表示時に表示する高さを設定 */
+  overflow: hidden;  /* 高さを超える部分を隠す */
+  transition: max-height 0.5s ease; /* アニメーションの追加 */
+}
+.code-container .hide-text.is-expanded {
+  max-height: 1000px; /* 展開時に表示する最大の高さを設定 */
+  overflow-y: auto; /* 縦スクロールを有効にする */
+}
+
+.code-container .readmore {
+  position: relative;
+  margin: 0em auto;
+  display: block;
+  color: #666;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  background: none;
+  letter-spacing: 0.1em;
+}
+.code-container .readmore:before {
+content: "";
+width: 50px;
+height: 50px;
+text-align: center;
+border-radius: 50%;
+display: block;
+margin: 0 auto .5em;
+background: url('../image/arrow.png') no-repeat center / 20px #fff;
+transition: .3s;
+}
+.code-container .readmore.on-click:before {
+transform: rotate(180deg);
+}
+.code-container .readmore .open {
+display: block;
+}
+.code-container .readmore.on-click .open {
+display: none;
+}
+.code-container .readmore .close {
+display: none;
+}
+.code-container .readmore.on-click .close {
+display: block;
+}

@@ -1,0 +1,256 @@
+a:hover {
+    opacity: .7;
+}
+
+a{
+    color:#666;
+    text-decoration:none;
+}
+html{
+  scroll-behavior: smooth;
+}
+li{
+    list-style:none;
+}
+ul {
+    padding: 0;
+}
+
+#foot article{
+width:100%;
+max-width:900px;
+margin:0% auto 4%;
+}
+
+img{
+  width:100%;
+  border-radius: 10px; /*画像の角を丸くする*/
+}
+
+#foot article h2{
+margin:0% auto 2%;
+font-size:1.3em;
+font-weight:bold;
+text-align:center;
+}
+.gray{
+background:#eee;
+padding:5%;
+width:90%;
+margin-left: auto;
+margin-right: auto;
+max-width:900px;
+
+}
+.flexbox{
+display:flex;
+}
+#Community li{
+width: calc(100% / 4);
+margin: 0% 0.5% 1%;
+}
+/* #Footer
+--------------------------------------*/
+footer{
+text-align:center;
+margin:3% auto;
+max-width:1100px;
+}
+footer ul{
+  justify-content: center;
+  font-size:14px;
+}
+footer li{
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding:0 10px;
+}
+footer li+ li {
+  border-left: 0;
+  border-right: 1px solid #ddd;
+}
+
+footer .copyright, footer .ban {
+    font-size: 0.7em;
+    margin-top: 2%;
+    text-align: center;
+}
+
+/* #pageTop
+--------------------------------------*/
+
+.scroll_button{
+  display: none;
+  opacity: 0;
+}
+
+.pagetop_left {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    background: #fff;
+    border: solid 6px #b1b1b1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+.pagetop_left a {
+    color: #666;
+    text-decoration: none;
+}
+.pagetop_left_arrow {
+    height: 10px;
+    width: 10px;
+    border-top: 6px solid #b1b1b1;
+    border-right: 6px solid #b1b1b1;
+    transform: translateY(20%) rotate(-45deg);
+}
+.pagetop_right {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  background: #fff;
+  border: solid 2px #666;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.pagetop_right a {
+  color: #666;
+  text-decoration: none;
+}
+.pagetop_right_arrow {
+  height: 10px;
+  width: 10px;
+  border-top: 3px solid #666;
+  border-right: 3px solid #666;
+  transform: translateY(20%) rotate(-45deg);
+}
+
+/* 中央のボタンを追加 */
+.pagetop_center {
+  height: 50px;
+  width: 300px;
+  position: fixed;
+  left: 50%; /* 画面の中央に配置 */
+  bottom: 30px;
+  background: #fff;
+  border: solid 2px #666;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transform: translateX(-50%); /*ボタンを左右中央に正しく配置*/
+}
+
+.pagetop_center a {
+  color: #666;
+  text-decoration: none;
+}
+
+.pagetop_center #quantity, #checkout-button {
+  height: 30px; /* ボタンとプルダウンの高さを同じに */
+  padding: 0 10px; /* 上下のパディングをゼロにし、左右のスペースを保つ */
+  font-size: 16px; /* テキストサイズを一致させる */
+  line-height: normal; /* テキストの行の高さを通常に戻す */
+  border-radius: 5px; /* 角を丸くする場合 */
+  display: inline-flex; /* テキストを中央揃えするためにフレックスボックスを使用 */
+  align-items: center; /* 垂直方向の中央揃え */
+  justify-content: center; /* 水平方向の中央揃え */
+}
+
+.pagetop_center #quantity {
+  margin-right: 10px; /* 右側に10pxの余白を追加 */
+}
+
+.pagetop_center #checkout-button {
+  cursor: pointer; /* ボタンの場合、カーソルをポインタに */
+}
+
+/* .pagetop_center_arrow {
+  height: 10px;
+  width: 10px;
+  border-top: 3px solid #666;
+  border-right: 3px solid #666;
+  transform: translateY(20%) rotate(-45deg);
+} */
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 480px) {
+#foot article{
+margin:0% auto 7%;
+width:98%;
+}
+
+#foot article h2{
+font-size:1em;
+margin:0% auto 5%;
+}
+
+.gray{
+background:#eee;
+padding:5% 1%;
+width:100%;
+
+}
+
+/* #Footer
+--------------------------------------*/
+footer ul{
+  flex-flow: column;
+  justify-content: start;
+  text-align:left;
+}
+footer li{
+  border-left:none;
+  border-right:none;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+footer li+ li {
+  border-left: none;
+  border-right: none;
+}
+footer .ban {
+   display:none;
+}
+
+/* .pagetop_left {
+    height: 30px;
+    width: 30px;
+    left: 20px;
+    bottom: 20px;
+}
+.pagetop_right {
+  height: 30px;
+  width: 30px;
+  right: 20px;
+  bottom: 20px;
+}
+.pagetop_center {
+  height: 30px;
+  width: 250px;
+  left: 50%;
+  bottom: 20px;
+  border-radius: 15px;
+} */
+.pagetop_center #quantity, #checkout-button {
+  height: 20px; /* ボタンとプルダウンの高さを同じに */
+  padding: 0 5px; /* 上下のパディングをゼロにし、左右のスペースを保つ */
+  font-size: 12px; /* テキストサイズを一致させる *//
+}
+.pagetop_center #quantity {
+  margin-right: 5px; /* 右側に10pxの余白を追加 */
+}
+}

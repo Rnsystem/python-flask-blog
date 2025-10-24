@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block header_script %}
+{% endblock %}
+
+{% block menu %}
+  <!-- メニュー(アイコン)【開始】 -->
+  <a class="menu">
+      <span class="menu__line menu__line--top"></span>
+      <span class="menu__line menu__line--center"></span>
+      <span class="menu__line menu__line--bottom"></span>
+  </a>
+  <!-- メニュー(アイコン)【終了】 -->
+  <!-- ガイドナビ 【開始】 -->
+  <nav class="gnav">
+      <div class="gnav__wrap">
+        <ul class="gnav__menu">
+          <li class="gnav__menu__item"><a href="/top">トップページ</a></li>
+          <li class="gnav__menu__item"><a href="/category">ブログ一覧</a></li>
+          <li class="gnav__menu__item"><a href="/company">活動概要</a></li>
+          <li class="gnav__menu__item"><a href="/privacy">プライバシーポリシー</a></li>
+          <li class="gnav__menu__item"><a href="/contact">お問い合せ</a></li>
+        </ul>
+      </div>
+  </nav>
+  <!-- ガイドナビ【終了】 -->
+  <!-- メニュー用　ガイドナビ用　javascript 【開始】 -->
+  <script type="text/javascript">
+  $('.menu').on('click',function(){
+      $('.menu__line').toggleClass('active');
+      $('.gnav').fadeToggle();
+  });
+  $('.gnav li').on('click',function(){
+      $('.menu__line').toggleClass('active');
+      $('.gnav').fadeToggle();
+  });
+  </script>
+  <!-- メニュー用　ガイドナビ用　javascript 【終了】 -->
+{% endblock %}
+
+
+{% block main %}
+  <!-- main 開始 -->
+  <main class="main-content">
+
+    <section class="category-section">
+
+      <!-- 検索（select + 更新ボタン） -->
+      <div class="container category-filter">
+        <h2 class="section-title">カテゴリ選択</h2>
+        {# 安全に category_code を取得 #}
+        {% if blogs and blogs|length > 0 and blogs[0].get('categoryContentList') %}
+          {% set category_code = blogs[0]['categoryContentList'].get('code') %}
+        {% else %}
+          {% set category_code = None %}
+        {% endif %}
+
+        <div class="filter-row">
+          <select id="categorySelect" name="categorySelect" class="form-select" aria-label="カテゴリ選択">
+            <option value="" {% if not category_code %}selected{% endif %}>-- 選択してください --</option>
+            <option value="journal" {% if category_code == 'journal' %}selected{% endif %}>ジャーナル</option>
+            <option value="work" {% if category_code == 'work' %}selected{% endif %}>仕事</option>
+            <option value="learning" {% if category_code == 'learning' %}selected{% endif %}>まなび</option>
+            <option value="portfolio" {% if category_code == 'portfolio' %}selected{% endif %}>ポートフォリオ</option>
+          </select>
+
+          <button id="applyCategoryBtn" class="btn_contact" type="button" {% if not category_code %}disabled{% endif %}>更新</button>
+        </div>
+      </div>
+
+      <!-- categoryContentList grid 開始 -->
+      <div class="container">
+        {% if blogs and blogs|length > 0 and blogs[0].get('categoryContentList') %}
+          <h2 class="section-title">
+            {{ blogs[0]['categoryContentList'].get('name', 'Untitled') }}
+          </h2>
+        {% else %}
+          <h2 class="section-title">No Category</h2>
+        {% endif %}
+        <div class="portfolio-grid">
+          {# blogs は配列。各 item は { blogContentList: {...}, mainContentList: {...} } の構造を想定 #}
+          {# reverseをつけることで逆順（投稿最新順） #}
+          {% for item in blogs or [] | reverse %}
+            {% set blog = item.blogContentList if item.blogContentList is mapping else None %}
+            {% set main = item.mainContentList if item.mainContentList is mapping else None %}
+            <article class="card">
+              <a class="card-link" href="/blog/{{ blog.code if blog and blog.code else '#' }}">
+                <div class="card-image">
+                  {% if main and main.image_url %}
+                    <img src="{{ main.image_url }}" alt="{{ main.image_alt or (blog.title if blog else '') }}">
+                  {% else %}
+                    <div class="image-placeholder" aria-hidden="true"></div>
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">{{ blog.title if blog and blog.title else 'Untitled' }}</h3>
+                  {% if blog and blog.catchcopy %}
+                    <p class="card-sub">{{ blog.catchcopy }}</p>
+                  {% endif %}
+                  <div class="card-meta">
+                    {% if blog and blog.date %}
+                      <time datetime="{{ blog.date }}">{{ blog.date }}</time>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!-- portfolio grid 終了 -->
+  </main>
+  <!-- main 終了 -->
+{% endblock %}
+
+{% block community %}
+{% endblock %}
+
+{% block sale %}
+{% endblock %}
+
+{% block footer_script %}
+{% endblock %}

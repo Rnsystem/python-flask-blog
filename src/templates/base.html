@@ -1,0 +1,103 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="keywords" content="エンジニア,プログラミング,ブログ,ポートフォリオ,オープンソース,勉強,仕事,ビジネス,技術書,システムエンジニア,EC,イーコマース,shopify,社内SE">
+<meta name="description" content="Rnsystem公式サイト">
+<title>Rnsystemとは | Rnsystem公式サイト</title>
+
+<link rel="shortcut icon" href="{{ url_for('static', filename='image/icon/icon64.ico') }}" type="image/x-icon">
+<!-- CSSファイルを先に読み込む -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="{{ url_for('static', filename='css/footer.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cookie-dialog.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/code.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/category.css') }}">
+<!-- swiper-slider start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/swiper-slider.css') }}">
+<!-- swiper-slider end -->
+<!-- jQuery の読み込みを一度だけ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<!-- スクリプトの読み込み -->
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cookie-dialog.js') }}"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="{{ url_for('static', filename='js/chat-widget.js') }}"></script>
+<!-- Google-code-prettify End -->
+<!-- Google tag (gtag.js) -->
+<!-- Google Tag Manager Start -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N9GSV2B2');</script>
+<!-- Google Tag Manager End -->
+{% block header_script %}{% endblock %}
+</head>
+<body id="about" translate="no">
+    <!-- Google Tag Manager (noscript) Start -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9GSV2B2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- Google Tag Manager (noscript) End -->
+
+    <!-- クッキー承諾確認ダイアログとオーバーレイ【開始】 -->
+    <div id="cookie-overlay" class="cookie-overlay"></div>
+    <div id="cookie-dialog" class="cookie-dialog">
+        <p>当サイトではクッキーを使用しています。引き続きご利用になる場合、クッキーの使用に同意したものとみなされます。</p>
+        <button id="accept-cookies">同意する</button>
+        <button id="decline-cookies">同意しない</button>
+    </div>
+    <!-- クッキー承諾確認ダイアログとオーバーレイ【終了】 -->
+  
+
+    <!-- メニューは非表示 【開始】 -->
+    <!-- <style>
+    .menu{display:none;}
+    </style> -->
+    <!-- メニューは非表示 【終了】 -->
+
+    <!-- ヘッダ 開始 -->
+    {% include 'header.html' %}
+    <!-- ヘッダ 終了 -->
+
+    <!-- メニュー ガイドナビ【開始】 -->
+    {% block menu %}{% endblock %}
+    <!-- メニュー ガイドナビ【終了】 -->
+
+    <!-- main 開始 -->
+    {% block main %}{% endblock %}
+    <!-- main 終了 -->
+
+    <!-- community 開始 -->
+    {% block community %}{% endblock %}
+    <!-- community 終了 -->
+    
+    <!-- フッター 開始 -->
+    {% include 'footer.html' %}
+    <!-- フッター 終了 -->
+
+    <!-- フッター固定button配置 開始-->
+    <a class="pagetop_left scroll_button" href="#"><div class="pagetop_left_arrow"></div></a>
+    <div id="chat-widget" data-icon-url="{{ url_for('static', filename='image/hukidasi-mark.gif') }}"></div>
+    <!-- <a class="pagetop_center" href="#"><div class="pagetop_center_arrow"></div></a> -->
+    <!-- <a class="pagetop_right" href="#"><div class="pagetop_right_arrow"></div></a> -->
+    {% block sale %}{% endblock %}
+    <!-- フッター固定button配置 終了-->
+
+    <!-- フッターJavaScript群　開始 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script><!-- アニメーション用JSライブラリGSAP 【用途】main -->
+    <script src="{{ url_for('static', filename='js/slider.js') }}"></script><!-- スライダー 【用途】main -->
+    <script src="{{ url_for('static', filename='js/code.js') }}"></script><!-- code用 【用途】code -->
+    <script src="{{ url_for('static', filename='js/category.js') }}"></script><!-- category用 【用途】category -->
+    <!-- swiper-slider start -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/swiper-slider.js') }}"></script>
+    <!-- swiper-slider end -->
+    {% block footer_script %}{% endblock %}
+    <!-- フッターJavaScript群　終了 -->
+    
+</body>
+</html>

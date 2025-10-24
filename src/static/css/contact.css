@@ -1,0 +1,335 @@
+@charset "euc-jp";
+/* CSS Document */
+
+
+/* -----------------------------------------------------------------
+   reset
+----------------------------------------------------------------- */
+
+html {overflow-y: scroll;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,th,td {margin: 0;padding: 0;}
+img{border: 0;vertical-align:bottom;}
+li {list-style-type: none;}
+em,strong{font-style:normal;}
+table{border-collapse:collapse;	}
+.clearfix:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+
+/* -----------------------------------------------------------------
+   共通
+----------------------------------------------------------------- */
+
+a{
+	color:#1B4F98;
+	text-decoration:underline;	 
+}
+
+a:hover{
+	color: #1B4F98;
+	text-decoration:none;
+} 
+
+body{
+	margin:0;
+	padding:0;
+	background: #fff;
+	color:#333;
+	text-align:center;	
+	font-size: 15px;
+    font-family:"Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", sans-serif;
+    line-height:1.6;
+}
+
+p{
+	text-align: left;
+}
+
+label{
+	cursor:pointer;	
+}
+
+input,textarea{
+	font-family:"Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", sans-serif;	
+}
+
+.wrap{
+	width:100%;
+	max-width: 800px;
+	margin:0px auto;
+}
+
+.main{
+	margin-top: 48px;
+	padding: 0 24px;
+	box-sizing:border-box;	
+}
+
+.pageTitle {
+    font-size: 22px;
+	display: block; 
+	margin: 32 auto;
+}
+
+.smartphoneShow{
+	display: none !important;
+}
+
+.formTable{
+	width: 100%;
+	margin: 16px auto 32px;	
+}
+
+/* 入力欄を中央に配置する */
+.formTable td {
+	text-align: center; /* 親要素でテキスト（および入力要素）を中央揃えに */
+  }
+  
+  .formTable input[type="text"], .formTable textarea {
+	display: block;      /* ブロック要素にして中央寄せを可能にする */
+	margin: 0 auto;      /* 自動マージンで中央寄せ */
+	width: 80%;          /* 必要に応じて幅を調整（ここでは80%） */
+  }
+  
+
+.formTable th, .formTable td {
+    border: 1px solid #B3B3B3;
+    padding: 12px 8px;
+	text-align: left;
+}
+
+.formTable th{
+	background: #e6e6e6;
+	width: 210px;
+}
+
+.flash-messages_success {
+	font-weight: normal;
+	color: #0000cc;  /* メッセージのテキスト色 */
+	background-color: #e0f7ff;  /* 軽い青色の背景 */
+	padding: 10px 15px;  /* 余白を広げる */
+	font-size: 14px;  /* 文字サイズを少し大きく */
+	border: 2px solid #0077cc;  /* メッセージ周りにボーダーを追加 */
+	border-radius: 5px;  /* 角を丸くする */
+	margin: 10px 0;  /* 上下にスペースを追加 */
+  }
+  
+
+.required{
+	display: inline-block;
+	background: #cc0000;
+	font-weight: normal;
+	color: #fff;
+	padding: 3px 5px;
+	font-size: 11px;
+	float: right;
+}
+
+
+
+input[type="text"],textarea{
+	width: 90%;
+	border-radius: 8px; /* 角を丸くする */
+	padding: 10px; /* パディングを追加して見やすくする */
+	border: 1px solid #ccc; /* 枠線を設定 */
+}
+
+textarea{
+	height: 12em;
+}
+
+.errorMesseage{
+	color: #cc0000;	
+	margin-bottom: 4px;
+}
+
+.notes{
+	font-size: 13px;
+	color: #888;
+	display: block;
+	margin-top: 8px;	
+}
+
+/* -----------------------------------------------------------------
+   ショップに戻るボタンまわり
+----------------------------------------------------------------- */
+.header{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.shopBtn{
+  background: #ddd;
+  color: #777;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 20px;
+  text-decoration: none;
+}
+.shopBtn:hover{
+  background: #ccc;
+  color: #777;
+}
+
+/* -----------------------------------------------------------------
+   商品についてのお問い合わせ
+----------------------------------------------------------------- */
+
+.contactItem{
+	overflow :hidden;
+	display: table;
+	width: 100%;
+	margin: 16px auto 24px;
+}
+
+.contactItemImg{
+	display: table-cell;
+	text-align: left;
+	width: 20%;
+}
+
+.itemImg{
+    border: solid 1px #ccc;
+	max-width: 100%;
+}
+
+.contactItemName{
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 16px;
+}
+
+/* -----------------------------------------------------------------
+   問い合わせフォーム
+----------------------------------------------------------------- */
+
+.policyTitle {
+	font-size: 16px;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+iframe.privacyPolicy{
+	width: 100%;
+	border: 1px solid #ccc;
+	margin-bottom: 8px;
+	height: 140px;
+	overflow: auto;
+}
+
+.agreeCheck{
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.btnWrap {
+    margin-top: 64px;
+	margin-bottom: 64px;
+}
+
+
+.btn_contact_header {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: #eee;
+	color: #333;
+	text-decoration: none;
+    padding: 8px 32px;
+    box-sizing: border-box;
+    border-radius: 30px; /* 柔らかい丸みを追加し、優しい印象に */
+    display: inline-block;
+    margin: 15px 15px;
+	text-align: center;
+    font-size: 17px;
+	transition: background 0.3s ease, transform 0.3s ease; /* スムーズな変化を追加 */
+	border: none;
+    z-index: 100000; /* 他の要素より優先的に表示 */
+}
+
+.btn_contact_header.disabled {
+    background: #eee; /* 無効化されたボタンに柔らかいライトグレー */
+    pointer-events: none;
+    color: #333; /* 無効ボタンの文字も少し淡い色に */
+}
+
+.btn_contact_header:hover {
+	color: #333 ;
+    background: #bbb; /* 背景色を濃く変更 */
+}
+
+.btn_contact {
+    background: #eee; /* 全体のテーマに合う落ち着いた濃いグレー */
+    color: #666666; /* 白い文字でコントラストを強調 */
+    text-decoration: none;
+    padding: 12px 32px;
+    box-sizing: border-box;
+    border-radius: 30px; /* 柔らかい丸みを追加し、優しい印象に */
+    font-size: 17px;
+    display: inline-block;
+    margin: 0 auto;
+    transition: background 0.3s ease, transform 0.3s ease; /* スムーズな変化を追加 */
+	border: none; /* ボタンの淵（黒い部分）を消す */
+}
+
+.btn_contact.disabled {
+    background: #eee; /* 無効化されたボタンに柔らかいライトグレー */
+    pointer-events: none;
+    color: #666666; /* 無効ボタンの文字も少し淡い色に */
+}
+
+.btn_contact:hover {
+	color: #666666 ;
+    background: #bbb ; /* 背景色を濃く変更 */
+}
+
+.closeBtn {
+    background: #E6E6E6; /* 無効ボタンと区別するため、少し明るめのグレー */
+    color: #666666 !important; /* 他のボタンに合わせて濃いグレーの文字 */
+    border-radius: 20px; /* 柔らかい丸みで統一感を持たせる */
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.closeBtn:hover {
+    background: #E6E6E6; /* ホバー時にやや濃いめのグレー */
+    transform: translateY(-2px); /* 浮き上がるような効果を追加 */
+}
+
+.messageText{
+	text-align: center;
+	font-size: 17px;
+}
+
+
+
+/* -----------------------------------------------------------------
+   問い合わせフォーム　スマホ用
+----------------------------------------------------------------- */
+
+@media screen and (max-width: 768px) {
+	.formTable th, .formTable td {
+	  display: block;
+	  width: 100%;
+	  box-sizing: border-box;
+	}
+  
+	.formTable th {
+	  text-align: left;
+	  width: 100%; /* 100%幅に変更 */
+	}
+  
+	.formTable td {
+	  padding-left: 0; /* スペースを削減 */
+	}
+  }
+  

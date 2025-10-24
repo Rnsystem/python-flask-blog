@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <style>
+      body {
+        background: #ffffff;
+        font-family: "Helvetica", "Open sans",sans-serif;
+        color:   #444;
+        font-weight: 100;
+        font-size: 30px;
+      }
+      #loading_container{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        margin: auto;
+        display: block;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .L{
+        position: absolute;
+        left:-20%;
+        top:50%;
+        -webkit-animation: L 2s infinite;
+      }
+      .O{
+        position: absolute;
+        left:0%;
+        top:50%;
+        -webkit-animation: O 2s infinite;
+        -webkit-animation-delay: 100ms;
+      }
+      .A{
+        position: absolute;
+        left:20%;
+        top:50%;
+        -webkit-animation: A 2s infinite;
+        -webkit-animation-delay: 200ms;
+      }
+      .D{
+        position: absolute;
+        left:40%;
+        top:50%;
+        -webkit-animation: D 2s infinite;
+        -webkit-animation-delay: 300ms;
+      }
+      .I{
+        position: absolute;
+        left:65%;
+        top:50%;
+        -webkit-animation: I 2s infinite;
+        -webkit-animation-delay: 400ms;
+      }
+      .N{
+        position: absolute;
+        left:80%;
+        top:50%;
+        -webkit-animation: N 2s infinite;
+        -webkit-animation-delay: 500ms;
+      }
+      .G{
+        position: absolute;
+        left:100%;
+        top:50%;
+        -webkit-animation: G 2s infinite;
+        -webkit-animation-delay: 600ms;
+      }
+
+      @-webkit-keyframes L {
+        0% {top:0px; opacity:0;}
+        50% {top:50px; opacity: 1;}
+        100% {top:0px; opacity: 0;}
+      }
+      @-webkit-keyframes O {
+        0% {top:0px; opacity:0;}
+        50% {top:50px; opacity: 1;}
+        100% {top:0px; opacity: 0;}
+      }
+      @-webkit-keyframes A {
+        0% {top:0px; opacity:0;}
+        50% {top:50px; opacity: 1;}
+        100% {top:0px; opacity: 0;}
+      }
+      @-webkit-keyframes D {
+        0% {top:0px; opacity:0;}
+        50% {top:50px; opacity: 1;}
+        100% {top:0px; opacity: 0;}
+      }
+      @-webkit-keyframes I {
+        0% {top:0px; opacity:0;}
+        50% {top:50px; opacity: 1;}
+        100% {top:0px; opacity: 0;}
+      }
+      @-webkit-keyframes N {
+        0% {top:0px; opacity:0;}
+        50% {top:50px; opacity: 1;}
+        100% {top:0px; opacity: 0;}
+      }
+      @-webkit-keyframes G {
+        0% {top:0px; opacity:0;}
+        50% {top:50px; opacity: 1;}
+        100% {top:0px; opacity: 0;}
+      }
+      #loading_message {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: calc(100% + 40%); /* #loading_containerの下に10%の位置 */
+        font-size: 10px;
+        color: #444;
+      }
+    </style>
+</head>
+<body>
+    <div id="loading_container">
+      <div class="L">
+        <p>L</p>
+      </div>
+      <div class="O">
+        <p>O</p>
+      </div>
+      <div class="A">
+        <p>A</p>
+      </div>
+      <div class="D">
+        <p>D</p>
+      </div>
+      <div class="I">
+        <p>I</p>
+      </div>
+      <div class="N">
+        <p>N</p>
+      </div>
+      <div class="G">
+        <p>G</p>
+      </div>
+      <div id="loading_message">リクエスト送信中...</div>
+    </div>
+
+    <!-- フッターJavaScript群　開始 -->
+    <script>
+      // 現在のプロトコル（http or https）
+      const protocol = window.location.protocol;
+      // ドメイン（ホスト名）
+      const domain = document.domain;
+      // ポート番号
+      const port = window.location.port;
+      // 接続URLを生成
+      let socketURL = protocol + '//' + domain;
+      if (port && port !== '80' && port !== '443') {
+          socketURL += ':' + port;
+      }
+      // ソケット接続
+      const socket = io.connect(socketURL);
+      socket.on('loading', function(msg) {
+          document.getElementById('loading_message').innerText = msg.data;
+      });
+      // データが読み込まれたら「blog.html」にリダイレクト（履歴に残さない）
+      socket.on('loaded', function(msg) {
+          document.getElementById('loading_message').innerText = msg.data;
+          // 履歴にLoadingページを残さず、リダイレクト
+          //history.replaceState(null, '', '{{ redirectURL }}?accessID={{ accessID }}');
+          //window.location.href = '{{ redirectURL }}?accessID={{ accessID }}';
+          history.replaceState(null, '', '{{ redirectURL }}');
+          window.location.href = '{{ redirectURL }}';
+      });
+    </script>
+    <!-- フッターJavaScript群　終了 -->
+    <script>
+    </script>
+</body>
+</html>

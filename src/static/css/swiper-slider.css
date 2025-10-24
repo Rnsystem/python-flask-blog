@@ -1,0 +1,223 @@
+/* ================================================
+   Swiper.js スライダー用 CSS - 修正版
+================================================ */
+
+/* 修正20250828 */
+body .swiper-wrapper {
+    width: auto;
+    height: auto;
+}
+
+
+.swiper-slider-content-article {
+    max-width: 1100px;
+    min-height: 540px;
+    margin: 0% auto;
+    display: block;
+    padding-top: 40px;    /* 上の余白 */
+    padding-bottom: 70px; /* 下の余白 */
+}
+
+
+.swiper-slider-content-title h2 {
+    font-size: 24px;       /* フォントサイズ */
+    color: #333;           /* テキストカラー */
+    text-align: center;    /* テキストを中央揃え */
+    font-weight: bold;     /* 太字 */
+    line-height: 1.5;      /* 行の高さ */
+    margin: 0 !important;  /* marginを強制的に0にする */
+    margin-bottom: 40px !important;   /* 下部の余白 */
+}
+
+
+/* .swiper-slider-content-title h2 span {
+    font-size: 18px;      
+    color: #666;          
+} */
+
+
+
+/* スライダーコンテナ */
+.swiper-slider-container {
+    width: 100%;
+    height: 50%;
+    overflow: visible; /* overflow: hidden; *//* 影がはみ出ても表示されるように */
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    position: relative;
+    padding: 20px 0; /* コンテナ上下に余白追加 */
+}
+
+/* Swiperの設定 */
+.swiper-slider {
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* 各スライドのデザイン */
+.swiper-slider-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    padding-bottom: 15px;
+    text-align: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.swiper-slider-slide:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 画像の高さ・サイズを統一 */
+.swiper-slider-slide img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    pointer-events: none;
+    user-select: none;
+    transition: transform 0.3s ease;
+}
+
+.swiper-slider-slide:hover img {
+    transform: scale(1.05);
+}
+
+/* スライド内のテキスト情報 */
+.swiper-slider-content {
+    margin:10px;
+    /* padding: 10px; */
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px; /* border-radius: 0 0 10px 10px; */
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* スライド内のテキスト情報 */
+.swiper-slider-content-frame {
+    padding: 10px;
+}
+
+
+/* ナビゲーションボタン */
+.swiper-slider-prev, .swiper-slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 12px;
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* ボタンの左右位置を画面幅の比率で調整 */
+.swiper-slider-prev {
+    left: 2%; /* 画面幅の2%に設定 */
+}
+
+.swiper-slider-next {
+    right: 2%; /* 画面幅の2%に設定 */
+}
+
+/* ボタンのホバー時 */
+.swiper-slider-prev:hover, .swiper-slider-next:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* 日付 */
+.swiper-slider-date {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+/* タイトル */
+.swiper-slider-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+/* 説明文 */
+.swiper-slider-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* タグ */
+.swiper-slider-tags {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.swiper-slider-tags span {
+    background: #eee;
+    color: #666666;
+    font-weight:bold;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+/* ページネーションを表示したい場合のオプション */
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.swiper-pagination-bullet {
+    background: #eee;
+    opacity: 1;
+    margin: 0 5px;
+}
+
+.swiper-pagination-bullet-active {
+    background: #eee;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .swiper-slider-container {
+        width: 95%;
+    }
+    .swiper-slider-slide img {
+        height: 200px;
+    }
+    .swiper-slider-title {
+        font-size: 16px;
+    }
+    .swiper-slider-description {
+        font-size: 13px;
+    }
+    .swiper-slider-prev, .swiper-slider-next {
+        font-size: 20px; /* ボタンを少し小さくする */
+    }
+}
+
+@media (max-width: 480px) {
+    .swiper-slider-prev, .swiper-slider-next {
+        font-size: 18px; /* ボタンをさらに小さくする */
+    }
+}
