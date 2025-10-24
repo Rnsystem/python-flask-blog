@@ -20,8 +20,9 @@
 
 ---
 
-Python（Flask）で実装したブログシステムです。記事データは **FileMaker Server** 上で管理し、**FileMaker Data API** 経由で読み書きします。  
-FileMaker を使うことで **非エンジニアでも運用・保守しやすい** 設計を目指しています。
+- Python（Flask）で実装したブログシステムです。
+- 記事データは **FileMaker Server** 上で管理し、**FileMaker Data API** 経由で読み書きします。  
+- FileMaker を使うことで **非エンジニアでも運用・保守しやすい** 設計を目指しています。
 
 ---
 
@@ -129,6 +130,7 @@ IMAGE_FOLDER_WRITERS=/path/to/writers/image_obj
 ---
 
 ## 主要エンドポイント
+```bash
 - GET / → /top にリダイレクト
 - GET /top → トップページ（キャッシュあり）
 - GET /blog/<code> → 記事ページ
@@ -136,6 +138,7 @@ IMAGE_FOLDER_WRITERS=/path/to/writers/image_obj
 - GET /image/fm/.../<filename> → 画像配信（設定されている場合）
 - POST /payment/create-checkout-session → Stripe チェックアウト作成
 - POST /send_message → reCAPTCHA 検証後 Slack へ送信（WebSocket と併用）
+```
 
 ---
 
