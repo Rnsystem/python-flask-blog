@@ -18,6 +18,10 @@
 |-----------|
 | ![スマホ Preview](images/sample02.jpg) |
 
+| ブログプレビュー |
+|-----------|
+| ブログサイトはこちら：[https://www.rnsystem.jp](https://www.rnsystem.jp) |
+
 ---
 
 - Python（Flask）で実装したブログシステムです。
